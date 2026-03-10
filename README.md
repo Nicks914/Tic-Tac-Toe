@@ -114,6 +114,8 @@ Turn: X
 [ ] [ ] [ ]
 [ ] [ ] [ ]
 📸 Demo
+<img width="1129" height="908" alt="image" src="https://github.com/user-attachments/assets/f0fe3469-87a2-4ad7-9332-dd2009e75729" />
+
 
 You can run the application locally to see the UI animations and gameplay.
 
