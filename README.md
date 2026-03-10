@@ -5,7 +5,7 @@ The project demonstrates backend logic with Go templates, basic game algorithms,
 
 This project is ideal for learning Go web development, template rendering, and game logic implementation.
 
-## Features
+# Features
 
 ✨ Modern Glass UI Design
 ✨ Smooth move animations for X and O
@@ -17,9 +17,9 @@ This project is ideal for learning Go web development, template rendering, and g
 ✨ Responsive and interactive grid
 ✨ Built using Go HTML templates
 
-## Game Logic
+# Game Logic
 
-# The backend manages the entire game state:
+## The backend manages the entire game state:
 
 Tracks the game board
 
@@ -31,7 +31,7 @@ Executes AI moves
 
 Resets the game state
 
-# Winning combinations are checked for:
+## Winning combinations are checked for:
 
 Rows
 Columns
@@ -47,21 +47,21 @@ O | O |
 
 When a player wins, the winning cells glow with animation.
 
-## Tech Stack
+# Tech Stack
 
-# Backend
+## Backend
 
 Golang
 net/http
 HTML Templates
 
-# Frontend
+## Frontend
 
 HTML5
 CSS3
 Animations (CSS keyframes)
 
-## Project Structure
+# Project Structure
 tic-tac-toe/
 │
 ├── main.go
@@ -73,33 +73,33 @@ tic-tac-toe/
 │
 └── README.md
 
-## How to Play
+# How to Play
 
-# Choose a game mode
+## Choose a game mode
 
 1. Human vs Human
 2. Human vs AI
 
 Click any empty cell to make a move.
 
-# Players take turns placing:
+## Players take turns placing:
 
 X
 O
 
 The first player to align 3 symbols in a row wins.
 
-# AI Mode
+## AI Mode
 
 The AI automatically plays after the human move.
 
-# Current AI behavior:
+## Current AI behavior:
 
 Selects an available cell
 
 Simulates simple decision making
 
-# Future improvement:
+## Future improvement:
 
 Minimax Algorithm
 
@@ -117,7 +117,7 @@ Turn: X
 
 You can run the application locally to see the UI animations and gameplay.
 
-## Learning Outcomes
+# Learning Outcomes
 
 This project demonstrates:
 
@@ -131,7 +131,7 @@ Managing server state
 
 Creating interactive UI using CSS animations
 
-## Future Improvements
+# Future Improvements
 
 Possible enhancements:
 
