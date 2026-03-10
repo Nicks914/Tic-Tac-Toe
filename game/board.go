@@ -2,22 +2,6 @@ package game
 
 import "fmt"
 
-// // Game holds board state
-// type Game struct {
-// 	Board [9]Player
-// }
-
-// // Create new game
-// func NewGame() *Game {
-// 	return &Game{}
-// }
-
-// // Reset board
-// func (g *Game) Reset() {
-// 	for i := range g.Board {
-// 		g.Board[i] = Empty
-// 	}
-// }
 type Game struct {
 	Board         [9]Player
 	CurrentPlayer Player

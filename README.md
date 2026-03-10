@@ -114,6 +114,7 @@ Turn: X
 [ ] [ ] [ ]
 [ ] [ ] [ ]
 📸 Demo
+![alt text](image.png)
 
 You can run the application locally to see the UI animations and gameplay.
 
