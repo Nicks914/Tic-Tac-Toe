@@ -107,19 +107,12 @@ which makes the AI impossible to beat.
 
 Example UI:
 
-🎮 Tic Tac Toe
-Turn: X
-
-[ ] [ ] [ ]
-[ ] [ ] [ ]
-[ ] [ ] [ ]
+## Link - https://tic-tac-toe-njbi.onrender.com/
 📸 Demo
-<<<<<<< HEAD
-![alt text](image.png)
-=======
+
 <img width="1129" height="908" alt="image" src="https://github.com/user-attachments/assets/f0fe3469-87a2-4ad7-9332-dd2009e75729" />
-Link - https://tic-tac-toe-njbi.onrender.com/
-You can run the application locally to see the UI animations and gameplay.
+
+You can run the application locally or hit the link to see the UI animations and gameplay.
 
 # Learning Outcomes
 
