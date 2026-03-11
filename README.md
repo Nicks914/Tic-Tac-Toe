@@ -118,9 +118,7 @@ Turn: X
 ![alt text](image.png)
 =======
 <img width="1129" height="908" alt="image" src="https://github.com/user-attachments/assets/f0fe3469-87a2-4ad7-9332-dd2009e75729" />
-
->>>>>>> 2e45afb045dc662950db9e119d0d3fcd9a1dae72
-
+Link - https://tic-tac-toe-njbi.onrender.com/
 You can run the application locally to see the UI animations and gameplay.
 
 # Learning Outcomes
