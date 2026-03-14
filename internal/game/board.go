@@ -7,6 +7,9 @@ type Game struct {
 	CurrentPlayer Player
 	GameOver      bool
 	Winner        Player
+	ScoreX        int
+	ScoreO        int
+	Draws         int
 }
 
 func NewGame() *Game {

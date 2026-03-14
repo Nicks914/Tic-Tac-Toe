@@ -92,3 +92,26 @@ func (g *Game) BestMoveRandom() int {
 
 	return moves[rand.Intn(len(moves))]
 }
+
+func (g *Game) BestMove(difficulty string, ai, human Player) int {
+
+	switch difficulty {
+
+	case "easy":
+		return g.BestMoveRandom()
+
+	case "medium":
+
+		if rand.Intn(2) == 0 {
+			return g.BestMoveRandom()
+		}
+
+		return g.BestMoveMinimax(ai, human)
+
+	case "hard":
+		return g.BestMoveMinimax(ai, human)
+
+	default:
+		return g.BestMoveRandom()
+	}
+}

@@ -1,10 +1,31 @@
+// package main
+
+// import (
+// 	"fmt"
+// 	"net/http"
+
+// 	"tic-tac-toe/internal/web"
+// )
+
+// func main() {
+
+// 	fmt.Println("Server started at http://localhost:8080")
+
+// 	http.HandleFunc("/", web.HomeHandler)
+// 	http.HandleFunc("/move", web.MoveHandler)
+// 	http.HandleFunc("/reset", web.ResetHandler)
+// 	http.HandleFunc("/mode", web.ModeHandler)
+
+// 	http.ListenAndServe(":8080", nil)
+// }
+
 package main
 
 import (
 	"fmt"
 	"net/http"
 
-	"tic-tac-toe/web"
+	"tic-tac-toe/internal/web"
 )
 
 func main() {
@@ -15,6 +36,7 @@ func main() {
 	http.HandleFunc("/move", web.MoveHandler)
 	http.HandleFunc("/reset", web.ResetHandler)
 	http.HandleFunc("/mode", web.ModeHandler)
+	http.HandleFunc("/difficulty", web.DifficultyHandler)
 
 	http.ListenAndServe(":8080", nil)
 }

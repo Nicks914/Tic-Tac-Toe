@@ -90,6 +90,12 @@ color:white !important;
 animation:winGlow 1s infinite alternate;
 }
 
+.active{
+background:#2ecc71 !important;
+color:white;
+box-shadow:0 0 10px #2ecc71;
+}
+
 @keyframes pop{
 0%{transform:scale(0)}
 100%{transform:scale(1)}
@@ -146,11 +152,35 @@ animation:blink 1s infinite;
 <div class="thinking">🤖 AI Thinking...</div>
 {{end}}
 
-<div class="controls">
+<!-- <div class="controls">
 <button onclick="location.href='/mode?mode=ai'">Human vs AI</button>
 <button onclick="location.href='/mode?mode=human'">Human vs Human</button>
 <button onclick="location.href='/reset'">Reset</button>
+</div> -->
+
+<div class="controls">
+
+<!-- <button onclick="location.href='/mode?mode=ai'">Human vs AI</button>
+<button onclick="location.href='/mode?mode=human'">Human vs Human</button> -->
+
+<button 
+class="{{if eq .Mode "ai"}}active{{end}}" 
+onclick="location.href='/mode?mode=ai'">
+Human vs AI
+</button>
+
+<button 
+class="{{if eq .Mode "human"}}active{{end}}" 
+onclick="location.href='/mode?mode=human'">
+Human vs Human
+</button>
+<button style="background-color: red; color: white;" onclick="location.href='/reset'">Reset</button>
+<button onclick="location.href='/difficulty?level=easy'">Easy</button>
+<button onclick="location.href='/difficulty?level=medium'">Medium</button>
+<button onclick="location.href='/difficulty?level=hard'">Hard</button>
+
 </div>
+
 
 <br>
 
