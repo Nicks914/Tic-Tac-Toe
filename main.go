@@ -37,6 +37,6 @@ func main() {
 	http.HandleFunc("/reset", web.ResetHandler)
 	http.HandleFunc("/mode", web.ModeHandler)
 	http.HandleFunc("/difficulty", web.DifficultyHandler)
-
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }

@@ -41,6 +41,7 @@ display:grid;
 grid-template-columns:repeat(3,120px);
 gap:10px;
 margin:auto;
+position:relative;
 }
 
 .cell{
@@ -54,7 +55,6 @@ align-items:center;
 font-size:60px;
 cursor:pointer;
 transition:0.25s;
-position:relative;
 }
 
 .cell:hover{
@@ -66,10 +66,6 @@ box-shadow:0 0 15px rgba(255,255,255,0.5);
 .move{
 width:100%;
 height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-text-decoration:none;
 }
 
 .x{
@@ -96,16 +92,6 @@ color:white;
 box-shadow:0 0 10px #2ecc71;
 }
 
-@keyframes pop{
-0%{transform:scale(0)}
-100%{transform:scale(1)}
-}
-
-@keyframes winGlow{
-from{box-shadow:0 0 10px #2ecc71}
-to{box-shadow:0 0 25px #2ecc71}
-}
-
 .controls button{
 margin:8px;
 padding:10px 16px;
@@ -128,6 +114,25 @@ font-size:18px;
 animation:blink 1s infinite;
 }
 
+#winLine{
+position:absolute;
+top:0;
+left:0;
+width:380px;
+height:380px;
+pointer-events:none;
+}
+
+@keyframes pop{
+0%{transform:scale(0)}
+100%{transform:scale(1)}
+}
+
+@keyframes winGlow{
+from{box-shadow:0 0 10px #2ecc71}
+to{box-shadow:0 0 25px #2ecc71}
+}
+
 @keyframes blink{
 0%{opacity:0.3}
 50%{opacity:1}
@@ -142,6 +147,10 @@ animation:blink 1s infinite;
 
 <div class="container">
 
+<audio id="clickSound" src="/static/click.mp3"></audio>
+<audio id="winSound" src="/static/win.mp3"></audio>
+<audio id="drawSound" src="/static/draw.mp3"></audio>
+
 <h1>🎮 Tic Tac Toe</h1>
 
 <div class="message">
@@ -152,39 +161,33 @@ animation:blink 1s infinite;
 <div class="thinking">🤖 AI Thinking...</div>
 {{end}}
 
-<!-- <div class="controls">
-<button onclick="location.href='/mode?mode=ai'">Human vs AI</button>
-<button onclick="location.href='/mode?mode=human'">Human vs Human</button>
-<button onclick="location.href='/reset'">Reset</button>
-</div> -->
-
 <div class="controls">
 
-<!-- <button onclick="location.href='/mode?mode=ai'">Human vs AI</button>
-<button onclick="location.href='/mode?mode=human'">Human vs Human</button> -->
-
-<button 
-class="{{if eq .Mode "ai"}}active{{end}}" 
+<button class="{{if eq .Mode "ai"}}active{{end}}" 
 onclick="location.href='/mode?mode=ai'">
 Human vs AI
 </button>
 
-<button 
-class="{{if eq .Mode "human"}}active{{end}}" 
+<button class="{{if eq .Mode "human"}}active{{end}}" 
 onclick="location.href='/mode?mode=human'">
 Human vs Human
 </button>
-<button style="background-color: red; color: white;" onclick="location.href='/reset'">Reset</button>
+
+<button style="background:red;" onclick="location.href='/reset'">
+Reset
+</button>
+
 <button onclick="location.href='/difficulty?level=easy'">Easy</button>
 <button onclick="location.href='/difficulty?level=medium'">Medium</button>
 <button onclick="location.href='/difficulty?level=hard'">Hard</button>
 
 </div>
 
-
 <br>
 
 <div class="board">
+
+<canvas id="winLine"></canvas>
 
 {{range $i,$v := .Board}}
 
@@ -198,7 +201,7 @@ Human vs Human
 
 {{if eq $v.String " "}}
 
-<a href="/move?cell={{$i}}" class="move"></a>
+<div class="move" onclick="playMove({{$i}})"></div>
 
 {{else if eq $v.String "X"}}
 
@@ -217,6 +220,76 @@ Human vs Human
 </div>
 
 </div>
+
+<script>
+
+function playMove(cell){
+
+const click = document.getElementById("clickSound")
+click.play()
+
+document.querySelectorAll(".move").forEach(e=>{
+e.style.pointerEvents="none"
+})
+
+fetch("/move?cell="+cell)
+.then(() => {
+
+setTimeout(()=>{
+location.reload()
+},400)
+
+})
+
+}
+
+function drawWinningLine(cells){
+
+const canvas = document.getElementById("winLine")
+const ctx = canvas.getContext("2d")
+
+canvas.width = 380
+canvas.height = 380
+
+const pos = [
+
+[60,60],[190,60],[320,60],
+[60,190],[190,190],[320,190],
+[60,320],[190,320],[320,320]
+
+]
+
+const start = pos[cells[0]]
+const end = pos[cells[2]]
+
+ctx.beginPath()
+ctx.moveTo(start[0],start[1])
+ctx.lineTo(end[0],end[1])
+ctx.lineWidth = 8
+ctx.strokeStyle = "#2ecc71"
+ctx.stroke()
+
+}
+
+{{if and .WinnerCells (ge (len .WinnerCells) 3)}}
+
+drawWinningLine([
+{{index .WinnerCells 0}},
+{{index .WinnerCells 1}},
+{{index .WinnerCells 2}}
+])
+
+document.getElementById("winSound").play()
+
+{{end}}
+
+{{if eq .Message "Game Draw!"}}
+
+document.getElementById("drawSound").play()
+
+{{end}}
+
+</script>
 
 </body>
 </html>
